@@ -1,5 +1,5 @@
 <?php
 
-use Jalen\Leadmin\Controllers\ScaffoldController;
+use Zjalen\Leadmin\Controllers\ScaffoldController;
 
 Route::resource('scaffold', 'ScaffoldController');

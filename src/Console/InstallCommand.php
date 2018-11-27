@@ -1,6 +1,6 @@
 <?php
 
-namespace Jalen\Leadmin\Console;
+namespace Zjalen\Leadmin\Console;
 
 use Illuminate\Console\Command;
 

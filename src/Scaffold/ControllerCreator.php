@@ -1,6 +1,6 @@
 <?php
 
-namespace Jalen\Leadmin\Scaffold;
+namespace Zjalen\Leadmin\Scaffold;
 
 class ControllerCreator
 {

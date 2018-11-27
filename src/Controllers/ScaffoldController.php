@@ -7,7 +7,7 @@
  * Time: 17:12
  */
 
-namespace Jalen\Leadmin\Controllers;
+namespace Zjalen\Leadmin\Controllers;
 
 use Illuminate\Routing\Controller;
 use Jalen\Leadmin\Scaffold\RequestCreator;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jalen\Leadmin\Scaffold;
+namespace Zjalen\Leadmin\Scaffold;
 
 use Illuminate\Database\Migrations\MigrationCreator as BaseMigrationCreator;
 
