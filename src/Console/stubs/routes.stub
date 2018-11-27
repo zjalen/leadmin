@@ -1,5 +1,3 @@
 <?php
 
-use Zjalen\Leadmin\Controllers\ScaffoldController;
-
-Route::resource('scaffold', 'ScaffoldController');
+Route::resource('scaffold', 'Zjalen\\Leadmin\\Controllers\\ScaffoldController');

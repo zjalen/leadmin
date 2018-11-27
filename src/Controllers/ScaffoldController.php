@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: Jalen
+ * User: Zjalen
  * Date: 2018/8/31
  * Time: 17:12
  */
@@ -10,11 +10,11 @@
 namespace Zjalen\Leadmin\Controllers;
 
 use Illuminate\Routing\Controller;
-use Jalen\Leadmin\Scaffold\RequestCreator;
+use Zjalen\Leadmin\Scaffold\RequestCreator;
 use Illuminate\Http\Request;
-use Jalen\Leadmin\Scaffold\ModelCreator;
-use Jalen\Leadmin\Scaffold\ControllerCreator;
-use Jalen\Leadmin\Scaffold\MigrationCreator;
+use Zjalen\Leadmin\Scaffold\ModelCreator;
+use Zjalen\Leadmin\Scaffold\ControllerCreator;
+use Zjalen\Leadmin\Scaffold\MigrationCreator;
 use Illuminate\Support\Facades\Artisan;
 
 class ScaffoldController extends Controller

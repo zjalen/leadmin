@@ -11,7 +11,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $name = 'admin:install';
+    protected $name = 'leadmin:install';
 
     /**
      * The console command description.
@@ -55,7 +55,7 @@ class InstallCommand extends Command
         }
 
         if (!is_dir(app_path('Models'))) {
-            $this->makeDir(app_path('Models'));
+            $this->laravel['files']->makeDirectory(app_path('Models'), 0755, true, true);
         }
 
         $this->makeDir('/');

@@ -11,7 +11,7 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'Jalen\Leadmin\Console\InstallCommand',
+        'Zjalen\Leadmin\Console\InstallCommand',
     ];
 
     /**
@@ -46,10 +46,7 @@ class AdminServiceProvider extends ServiceProvider
         }
 
         if ($this->app->runningInConsole()) {
-//            $this->publishes([__DIR__.'/../config' => config_path()], 'laravel-admin-config');
-//            $this->publishes([__DIR__.'/../resources/lang' => resource_path('lang')], 'laravel-admin-lang');
-//            $this->publishes([__DIR__.'/../resources/views' => resource_path('views/admin')],           'laravel-admin-views');
-//            $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'laravel-admin-migrations');
+            $this->publishes([__DIR__.'/../resources/views' => resource_path('views/leadmin')], 'leadmin-views');
             $this->publishes([__DIR__.'/../resources/assets/js/components' => resource_path('assets/js/components/leadmin')], 'leadmin-assets');
             $this->publishes([__DIR__.'/../public' => public_path('vendor/leadmin')], 'leadmin-public');
         }

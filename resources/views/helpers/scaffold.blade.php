@@ -197,8 +197,8 @@
             config: {
                 table: '',
                 model: 'App\\Models\\',
-                request: 'App\\Http\\Requests\\',
-                controller: 'App\\Http\\Controllers\\',
+                request: 'App\\Leadmin\\Requests\\',
+                controller: 'App\\Leadmin\\Controllers\\',
                 create_migration: true,
                 create_model: true,
                 create_request: true,

@@ -5,6 +5,7 @@ namespace DummyNamespace;
 use DummyModelNamespace;
 
 use DummyRequestNamespace;
+use Illuminate\Routing\Controller;
 
 class DummyClass extends Controller
 {
@@ -58,7 +59,7 @@ class DummyClass extends Controller
         if ($request->ajax()){
             return $data;
         }
-        return view('commons.index',['data'=> json_encode($data),'filters'=> json_encode($filters)]);
+        return view('leadmin.commons.index',['data'=> json_encode($data),'filters'=> json_encode($filters)]);
     }
 
     /**
@@ -76,7 +77,7 @@ class DummyClass extends Controller
 //DummyFormBody
                 ],
             ];
-            return view('commons.create_and_edit',['data'=> json_encode($data)]);
+            return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
         }
 
         /**
@@ -112,7 +113,7 @@ class DummyClass extends Controller
                 ],
                 'body'=>$model,
             ];
-            return view('commons.create_and_edit',['data'=> json_encode($data)]);
+            return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
         }
 
         /**
