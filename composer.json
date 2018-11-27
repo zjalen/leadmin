@@ -14,6 +14,15 @@
         "php": ">=7.0.0"
     },
     "autoload": {
-        "Jalen\\Leadmin\\": "src/"
+        "psr-4": {
+            "Zjalen\\Leadmin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zjalen\\Leadmin\\AdminServiceProvider"
+            ]
+        }
     }
 }
