@@ -1,0 +1,149 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyModelNamespace;
+
+use DummyRequestNamespace;
+
+class DummyClass extends Controller
+{
+
+    /**
+     * Index interface.
+     * @param DummyRequest $request
+     *
+     * @return mixed
+     */
+    public function index(DummyRequest $request)
+    {
+        $filters = $request->input('filters', []);
+        $sort = $request->input('_sort',['column'=> 'created_at', 'type'=> 'desc']);
+        $limit = $request->input('limit', 20);
+        $skip = $request->input('skip', 0);
+        $data = [
+            'title'=> 'Title',
+            'description'=> 'Description',
+            'headers'=>[
+                //['title'=> 'id','name'=> 'id', 'width'=> 100],
+//DummyHeader
+            ],
+            'header_actions'=>[
+                ['action'=>'create', 'type'=> 'primary', 'text'=> '添加', 'icon'=> 'fa-plus'],
+                ['action'=>'filter', 'type'=> 'danger', 'text'=> '筛选', 'icon'=> 'fa-search'],
+                ['action'=>'export', 'type'=> 'success', 'text'=> '导出', 'icon'=> 'fa-table'],
+            ],
+            'body'=>[],
+            'actions'=>[
+                ['action'=>'edit', 'type'=> 'primary', 'text'=> '编辑', 'icon'=> 'fa-edit'],
+                ['action'=>'delete', 'type'=> 'danger', 'text'=> '删除', 'icon'=> 'fa-trash'],
+            ],
+            'count'=> 0,
+        ];
+        if (count($filters) > 0){
+            $data['body'] = DummyModel::where($filters)->orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
+            $data['count'] = DummyModel::where($filters)->count();
+        }else {
+            $data['body'] = DummyModel::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
+            $data['count'] = DummyModel::all()->count();
+        }
+        $filters = [
+            'headers'=>[
+//DummyHeader
+            ],
+            'body'=>[
+//DummyFilters
+            ],
+        ];
+        if ($request->ajax()){
+            return $data;
+        }
+        return view('commons.index',['data'=> json_encode($data),'filters'=> json_encode($filters)]);
+    }
+
+    /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function create()
+        {
+            $data = [
+                'title'=> '添加',
+                'description'=> '添加设备',
+                'headers'=>[
+//DummyHeader
+                ],
+                'body'=>[
+//DummyFormBody
+                ],
+            ];
+            return view('commons.create_and_edit',['data'=> json_encode($data)]);
+        }
+
+        /**
+         * @param DummyRequest $request
+         * @return array
+         */
+        public function store(DummyRequest $request)
+        {
+            $receive = $request->input();
+            $model = new DummyModel;
+            $model->fill($receive);
+            $res = $model->save();
+
+            if ($res) {
+                return ['error_code' => 0, 'error_message' => '更新成功'];
+            }else {
+                return ['error_code' => 1, 'error_message' => '更新失败'];
+            }
+        }
+
+        /**
+         * @param $id
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function edit($id)
+        {
+            $model = DummyModel::find($id)->toArray();
+            $data = [
+                'title'=> '添加',
+                'description'=> '添加设备',
+                'headers'=>[
+//DummyHeader
+                ],
+                'body'=>$model,
+            ];
+            return view('commons.create_and_edit',['data'=> json_encode($data)]);
+        }
+
+        /**
+         * @param DummyRequest $request
+         * @param $id
+         * @return array
+         */
+        public function update(DummyRequest $request, $id)
+        {
+            $receive = $request->input();
+            $model = DummyModel::find($id);
+            $res = $model->update($receive);
+            if ($res) {
+                return ['error_code' => 0, 'error_message' => '更新成功'];
+            }else {
+                return ['error_code' => 1, 'error_message' => '更新失败'];
+            }
+        }
+
+        /**
+         * @param $id
+         * @return array
+         */
+        public function destroy($id)
+        {
+            $res = DummyModel::destroy($id);
+            if ($res){
+                return ['error_code'=> 0, 'error_message'=>'删除成功'];
+            }else {
+                return ['error_code'=> 1, 'error_message'=>'删除失败'];
+            }
+
+        }
+}

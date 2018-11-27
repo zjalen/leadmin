@@ -1,0 +1,19 @@
+{
+    "name": "zjalen/leadmin",
+    "description": "A package of laravel for admin controls with element",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zjalen",
+            "email": "835158314@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "Jalen\\Leadmin\\": "src/"
+    }
+}
