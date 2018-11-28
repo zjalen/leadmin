@@ -12,6 +12,7 @@ class AdminServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'Zjalen\Leadmin\Console\InstallCommand',
+        'Zjalen\Leadmin\Console\UninstallCommand',
     ];
 
     /**
@@ -33,9 +34,7 @@ class AdminServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Boot the service provider.
-     *
-     * @return void
+     * @throws \ReflectionException
      */
     public function boot()
     {
