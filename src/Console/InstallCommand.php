@@ -64,30 +64,10 @@ class InstallCommand extends Command
         $this->makeDir('Controllers');
         $this->makeDir('Requests');
 
-//        $this->createHomeController();
-//        $this->createExampleController();
-//
-//        $this->createBootstrapFile();
         $this->createModelFile();
         $this->createRoutesFile();
     }
 
-    /**
-     * Create HomeController.
-     *
-     * @return void
-     */
-    public function createHomeController()
-    {
-        $homeController = $this->directory.'/Controllers/HomeController.php';
-        $contents = $this->getStub('HomeController');
-
-        $this->laravel['files']->put(
-            $homeController,
-            str_replace('DummyNamespace', config('admin.route.namespace'), $contents)
-        );
-        $this->line('<info>HomeController file was created:</info> '.str_replace(base_path(), '', $homeController));
-    }
 
     /**
      * Create Model.
@@ -104,37 +84,6 @@ class InstallCommand extends Command
             $contents
         );
         $this->line('<info>Model file was created:</info> '.$model);
-    }
-
-    /**
-     * Create HomeController.
-     *
-     * @return void
-     */
-    public function createExampleController()
-    {
-        $exampleController = $this->directory.'/Controllers/ExampleController.php';
-        $contents = $this->getStub('ExampleController');
-
-        $this->laravel['files']->put(
-            $exampleController,
-            str_replace('DummyNamespace', config('admin.route.namespace'), $contents)
-        );
-        $this->line('<info>ExampleController file was created:</info> '.str_replace(base_path(), '', $exampleController));
-    }
-
-    /**
-     * Create routes file.
-     *
-     * @return void
-     */
-    protected function createBootstrapFile()
-    {
-        $file = $this->directory.'/bootstrap.php';
-
-        $contents = $this->getStub('bootstrap');
-        $this->laravel['files']->put($file, $contents);
-        $this->line('<info>Bootstrap file was created:</info> '.str_replace(base_path(), '', $file));
     }
 
     /**
