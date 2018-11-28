@@ -28,7 +28,7 @@ class DummyClass extends FormRequest
             case 'POST':
             {
                 return [
-                    //DummyRules
+//DummyRules
                 ];
             }
             // UPDATE
@@ -36,7 +36,7 @@ class DummyClass extends FormRequest
             case 'PATCH':
             {
                 return [
-                    //DummyRules
+//DummyRules
                 ];
             }
             case 'GET':
@@ -52,7 +52,7 @@ class DummyClass extends FormRequest
     {
         return [
             // Validation messages
-            //DummyMessages
+//DummyMessages
         ];
     }
 }

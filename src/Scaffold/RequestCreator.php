@@ -71,8 +71,8 @@ class RequestCreator
             $name = $tb['name'];
             $length = $tb['length'];
             if ($length) {
-                $rules .= "'{$name}'=> 'max:{$length}',\n";
-                $messages = "'{$name}.max' => '字符长度不超过{$length}',\n";
+                $rules .= "                    '{$name}'=> 'max:{$length}',\n";
+                $messages = "            '{$name}.max' => '字符长度不超过{$length}',\n";
             }
         }
         return str_replace(
