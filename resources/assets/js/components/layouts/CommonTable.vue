@@ -102,7 +102,7 @@
                         this.dialogFormVisible = true;
                         break;
                     case 'create':
-                        window.top.location.href = this.$href + '/create';
+                        window.top.location.href = window.top.location.href + '/create';
                         break;
                     case 'export':
 
@@ -114,7 +114,7 @@
                 console.log(obj);
                 switch (obj.act) {
                     case 'edit':
-                        window.top.location.href = this.$href + '/' + obj.data.id + '/edit';
+                        window.top.location.href = window.top.location.href + '/' + obj.data.id + '/edit';
                         break;
                     case 'delete':
                         this.onDelete(obj.data.id);
@@ -163,7 +163,7 @@
                 let that = this;
                 this.$confirm('是否确认删除？')
                     .then(() => {
-                        let url = this.$href + '/' + id;
+                        let url = window.top.location.href + '/' + id;
                         this.loading = true;
                         this.$axios.delete(url, {}).then(function (response) {
                             // console.log(response.data);
@@ -190,7 +190,7 @@
             },
             // 更新，switch开关切换
             onUpdate(data) {
-                let url = this.$href + '/' + data.id;
+                let url = window.top.location.href + '/' + data.id;
                 let that = this;
                 this.loading = true;
                 this.$axios.put(url, {data}).then(function (response) {
