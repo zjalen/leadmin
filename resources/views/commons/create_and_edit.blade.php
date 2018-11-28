@@ -6,14 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel</title>
-    <link rel="stylesheet" href="{{asset('vendor/leadmin/css/app.css')}}">
+    <title>后台管理</title>
+    {{--<link rel="stylesheet" href="{{mix('css/app.css')}}">--}}
     <link rel="stylesheet" href="{{asset('vendor/leadmin/css/theme/index.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/leadmin/css/theme/display.css')}}">
-    <!-- Fonts -->
-{{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
 
-<!-- Styles -->
     <style>
         html, body {
             background-color: #fff;
@@ -30,7 +27,7 @@
 <div id="app">
     <common-form :form_data="{{ $data }}"></common-form>
 </div>
-<script src="{{asset('vendor/leadmin/js/app.js')}}">
-</script>
+<script src="{{asset('vendor/leadmin/js/app.js')}}"></script>
+{{--<script src="{{mix('js/app.js')}}"></script>--}}
 </body>
 </html>

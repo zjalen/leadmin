@@ -9,7 +9,6 @@
             "email": "835158314@qq.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
     },
     "autoload": {

@@ -56,20 +56,7 @@
         }
     }
 </script>
-<style scoped lang="less">
-    .pages {
-        margin-top: 20px;
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
-    }
-    .header {
-        font-family: 'Source Sans Pro',sans-serif;
-        font-size: 1.6rem;
-        font-weight: 400;
-        margin-left: 8px;
-        margin-bottom: 10px;
-    }
+<style scoped>
     .table-content {
         width: 100%;
         margin: 0 10px;
@@ -77,10 +64,6 @@
     small {
         font-size: 60%;
         font-weight: 300;
-    }
-
-    .markdown-area {
-        line-height: 23px;
     }
 
 </style>

@@ -118,7 +118,7 @@
         }
     }
 </script>
-<style scoped lang="less">
+<style scoped>
     .form-content {
         width: auto;
         margin: 20px;

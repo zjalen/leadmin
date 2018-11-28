@@ -18,14 +18,9 @@
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                /*font-family: 'Nunito', sans-serif;*/
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
             }
 
             .flex-center {
@@ -36,27 +31,12 @@
             }
 
             .demo-block {
-                /*border: 1px solid #ebebeb;*/
                 border-radius: 3px;
                 transition: .2s;
             }
 
             .position-ref {
                 position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
             }
 
             .links > a {
@@ -69,15 +49,12 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
         <div id="app" class="flex-center position-ref">
             <div class="demo-block" v-loading="loading" style="width: 95%; margin: 15px;">
-                <div style="margin-left: 20px;"> <h4>脚手架配置</h4></div>
+                <div style="margin-left: 20px;"> <h4>脚手架工具</h4>自动生成 MVCR ，一键生成页面</div>
                 <el-form ref="form" :model="config" style="width: 100%" :rules="rules" label-width="80px">
                     <el-form-item label="数据表" prop="table">
                         <el-input v-model="config.table"></el-input>

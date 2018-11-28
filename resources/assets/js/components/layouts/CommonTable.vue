@@ -216,7 +216,7 @@
     }
 </script>
 
-<style scoped lang="less">
+<style scoped>
     .container {
         padding: 30px;
     }
@@ -234,5 +234,23 @@
         margin: 20px 20px 20px 0;
         display: flex;
         justify-content: flex-end;
+    }
+
+    .box-header {
+        color: #409EFF;
+        display: block;
+        padding: 10px;
+        position: relative;
+    }
+
+    .box {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        border-top: 3px solid #409EFF;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        width: 100%;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     }
 </style>

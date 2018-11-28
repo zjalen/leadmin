@@ -59,7 +59,16 @@ class DummyClass extends Controller
         if ($request->ajax()){
             return $data;
         }
-        return view('leadmin.commons.index',['data'=> json_encode($data),'filters'=> json_encode($filters)]);
+        $boxes = [
+            [
+                'color'=> '#ff6b5f',
+                'icon'=> 'fa-users',
+                'title'=> $data['count'],
+                'description'=> '总数量',
+                //'link'=> 'www.baidu.com'
+            ],
+        ];
+        return view('leadmin.commons.index',['boxes'=> json_encode($boxes), 'data'=> json_encode($data),'filters'=> json_encode($filters)]);
     }
 
     /**

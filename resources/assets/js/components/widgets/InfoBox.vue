@@ -1,5 +1,5 @@
 <template>
-    <div class="main" :style="{background: color}">
+    <div id="main" class="main" :style="{background: color}">
         <el-row class="row">
             <div class="grid-content-left">
                 <i class="fa" :class="icon">
@@ -31,9 +31,7 @@
         display: flex;
         background: none;
     }
-    .main :hover {
-        background: #58C9F3;
-    }
+
     .grid-content-left {
         height: 100px;
         width: 111px;
@@ -47,6 +45,11 @@
         align-items: center;
         background: #0000000f;
     }
+
+    #main :hover > .grid-content-left{
+        font-size: 65px;
+    }
+
     .grid-content-right {
         flex: 1;
         height: 100px;

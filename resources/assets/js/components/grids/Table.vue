@@ -64,7 +64,7 @@
         }
     }
 </script>
-<style scoped lang="less">
+<style scoped>
     .table-container {
         border-top: 1px solid #f4f4f4;
     }
@@ -72,16 +72,17 @@
         display: flex;
         align-items: center;
         background-size: 100%;
-
-        .image {
-            width: auto;
-            height: auto;
-            max-width: 80%;
-            border: 1px solid #aaa;
-            padding: 2px;
-        }
     }
-    .label {
+
+    .image {
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        border: 1px solid #aaa;
+        padding: 2px;
+    }
+
+    .label-info {
         display: inline;
         padding: .2em .6em .3em;
         font-size: 75%;
@@ -92,21 +93,62 @@
         white-space: nowrap;
         vertical-align: baseline;
         border-radius: .25em;
+        background-color: #909399;
+    }
 
-        &-info {
-            background-color: #909399;
-        }
-        &-primary {
-            background-color: #409EFF;
-        }
-        &-success {
-            background-color: #67C23A;
-        }
-        &-warning {
-            background-color: #f0ad4e;
-        }
-        &-danger {
-            background-color: #d9534f;
-        }
+    .label-success {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #67C23A;
+    }
+
+    .label-primary {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #409EFF;
+    }
+
+    .label-warning {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #f0ad4e;
+    }
+
+    .label-danger {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #d9534f;
     }
 </style>
