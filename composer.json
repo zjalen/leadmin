@@ -12,7 +12,8 @@
     "require": {
         "php": ">=7.0.0",
         "symfony/dom-crawler": "~3.1",
-        "laravel/framework": "~5.5"
+        "laravel/framework": "~5.5",
+        "mews/captcha" : "~2.2"
     },
     "autoload": {
         "psr-4": {
