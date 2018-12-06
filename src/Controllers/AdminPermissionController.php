@@ -32,10 +32,10 @@ class AdminPermissionController extends Controller
             'description'=> '细分权限管理',
             'headers'=>[
                 //['title'=> 'id','name'=> 'id',],
-                    ['title'=> '名称','name'=> 'name',],
-                    ['title'=> '标识','name'=> 'slug',],
-                    ['title'=> '请求方法','name'=> 'http_method','multiselect'=> true],
-                    ['title'=> '请求路由','name'=> 'http_path',],
+                ['title'=> '名称','name'=> 'name',],
+                ['title'=> '标识','name'=> 'slug',],
+                ['title'=> '请求方法','name'=> 'http_method','multiselect'=> true],
+                ['title'=> '请求路由','name'=> 'http_path', 'multiselect'=> true],
 
             ],
             'header_actions'=>[
@@ -75,19 +75,26 @@ class AdminPermissionController extends Controller
             $data['body'] = AdminPermission::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
             $data['count'] = AdminPermission::all()->count();
         }
+
+        foreach ($data['body'] as &$column) {
+            if ($column['http_path']){
+                $array = explode("\r\n", $column['http_path']);
+                $column['http_path'] = $array;
+            }
+        }
         $filters = [
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name',],
-                    ['title'=> '标识','name'=> 'slug',],
-                    ['title'=> '请求方法','name'=> '%http_method%',],
-                    ['title'=> '请求路由','name'=> 'http_path',],
+                ['title'=> '名称','name'=> 'name',],
+                ['title'=> '标识','name'=> 'slug',],
+                ['title'=> '请求方法','name'=> '%http_method%',],
+                ['title'=> '请求路由','name'=> 'http_path',],
 
             ],
             'body'=>[
-                    'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
-                    'slug'=> array_key_exists('slug', $conditions) ? $conditions['slug']: null ,
-                    'http_method'=> array_key_exists('http_method', $conditions) ? $conditions['http_method']: null ,
-                    'http_path'=> array_key_exists('http_path', $conditions) ? $conditions['http_path']: null ,
+                'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
+                'slug'=> array_key_exists('slug', $conditions) ? $conditions['slug']: null ,
+                'http_method'=> array_key_exists('http_method', $conditions) ? $conditions['http_method']: null ,
+                'http_path'=> array_key_exists('http_path', $conditions) ? $conditions['http_path']: null ,
 
             ],
         ];
@@ -115,17 +122,17 @@ class AdminPermissionController extends Controller
             'title'=> '添加',
             'description'=> '添加管理',
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name',],
-                    ['title'=> '标识','name'=> 'slug',],
-                    ['title'=> '请求方法','name'=> 'http_method','multiselect'=> [['id'=>'GET','name'=>'GET'],['id'=>'POST','name'=>'POST'],['id'=>'PUT','name'=>'PUT'],['id'=>'DELETE','name'=>'DELETE'],['id'=>'PATCH','name'=>'PATCH'], ['id'=>'OPTIONS','name'=>'OPTIONS'], ['id'=>'HEAD','name'=>'HEAD']]],
-                    ['title'=> '请求路由','name'=> 'http_path',],
+                ['title'=> '名称','name'=> 'name',],
+                ['title'=> '标识','name'=> 'slug',],
+                ['title'=> '请求方法','name'=> 'http_method','multiselect'=> [['id'=>'GET','name'=>'GET'],['id'=>'POST','name'=>'POST'],['id'=>'PUT','name'=>'PUT'],['id'=>'DELETE','name'=>'DELETE'],['id'=>'PATCH','name'=>'PATCH'], ['id'=>'OPTIONS','name'=>'OPTIONS'], ['id'=>'HEAD','name'=>'HEAD']]],
+                ['title'=> '请求路由','name'=> 'http_path',],
 
             ],
             'body'=>[
-                    'name'=> null,
-                    'slug'=> null,
-                    'http_method'=> [],
-                    'http_path'=> null,
+                'name'=> null,
+                'slug'=> null,
+                'http_method'=> [],
+                'http_path'=> null,
 
             ],
         ];
@@ -161,10 +168,10 @@ class AdminPermissionController extends Controller
             'title'=> '编辑',
             'description'=> '编辑管理',
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name',],
-                    ['title'=> '标识','name'=> 'slug',],
-                    ['title'=> '请求方法','name'=> 'http_method','multiselect'=> [['id'=>'GET','name'=>'GET'],['id'=>'POST','name'=>'POST'],['id'=>'PUT','name'=>'PUT'],['id'=>'DELETE','name'=>'DELETE'],['id'=>'PATCH','name'=>'PATCH'], ['id'=>'OPTIONS','name'=>'OPTIONS'], ['id'=>'HEAD','name'=>'HEAD']]],
-                    ['title'=> '请求路由','name'=> 'http_path',],
+                ['title'=> '名称','name'=> 'name',],
+                ['title'=> '标识','name'=> 'slug',],
+                ['title'=> '请求方法','name'=> 'http_method','multiselect'=> [['id'=>'GET','name'=>'GET'],['id'=>'POST','name'=>'POST'],['id'=>'PUT','name'=>'PUT'],['id'=>'DELETE','name'=>'DELETE'],['id'=>'PATCH','name'=>'PATCH'], ['id'=>'OPTIONS','name'=>'OPTIONS'], ['id'=>'HEAD','name'=>'HEAD']]],
+                ['title'=> '请求路由','name'=> 'http_path','textarea'=>true],
 
             ],
             'body'=>$model,

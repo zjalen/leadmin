@@ -32,7 +32,7 @@
                     </el-upload>
                     <el-button v-if="form1.body[value.name]" size="small" @click="onRemove(value.name)" type="danger">移除</el-button>
                 </span>
-                <el-input v-show="!value.hide" :disabled="value.disabled" :readonly="value.readonly" @keyup.enter="onSubmit" v-else-if="value.textarea" type="textarea" v-model="form1.body[value.name]"></el-input>
+                <el-input v-show="!value.hide" :disabled="value.disabled" :readonly="value.readonly" autosize @keyup.enter="onSubmit" v-else-if="value.textarea" type="textarea" v-model="form1.body[value.name]"></el-input>
                 <el-input v-show="!value.hide" :disabled="value.disabled" :readonly="value.readonly" @keyup.enter="onSubmit" v-else v-model="form1.body[value.name]"></el-input>
             </el-form-item>
             <el-form-item>
