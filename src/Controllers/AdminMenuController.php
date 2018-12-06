@@ -17,10 +17,10 @@ class AdminMenuController extends Controller
      */
     public function create(AdminMenuRequest $request)
     {
-        $id = $request->input('id');
+        $parent = $request->input('parent');
         $menus = AdminMenu::all(['id','title']);
         $list = [];
-        $selected = $id ? (int)$id: null;
+        $selected = $parent ? (int)$parent: null;
         foreach ($menus as $menu) {
             $list[] = ['value' => $menu->id, 'label' => $menu->title];
         }

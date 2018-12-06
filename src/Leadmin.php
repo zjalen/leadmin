@@ -121,7 +121,7 @@ class Leadmin
                 $router->resource('auth/users', 'AdminUserController');
                 $router->resource('auth/roles', 'AdminRoleController');
                 $router->resource('auth/permissions', 'AdminPermissionController');
-                $router->resource('auth/menu', 'AdminMenuController', ['only' => ['index', 'store', 'show', 'edit', 'update', 'destory']]);
+                $router->resource('auth/menu', 'AdminMenuController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destory']]);
                 $router->resource('auth/logs', 'AdminLogController', ['only' => ['index', 'destroy']]);
                 $router->resource('scaffold', 'ScaffoldController', ['only' => ['index', 'store']]);
             });
