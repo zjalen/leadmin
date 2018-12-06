@@ -20,7 +20,7 @@ class AdminMenuController extends Controller
         $id = $request->input('id');
         $menus = AdminMenu::all(['id','title']);
         $list = [];
-        $selected = null;
+        $selected = $id ? (int)$id: null;
         foreach ($menus as $menu) {
             $list[] = ['value' => $menu->id, 'label' => $menu->title];
         }
@@ -28,17 +28,17 @@ class AdminMenuController extends Controller
             'title'=> '添加',
             'description'=> '菜单添加',
             'headers'=>[
-                    ['title'=> '父级','name'=> 'parent_id', 'width'=> 100, 'select'=> $list ],
-                    ['title'=> '标题','name'=> 'title', 'width'=> 100],
-                    ['title'=> '图标','name'=> 'icon', 'width'=> 100],
-                    ['title'=> '链接','name'=> 'url', 'width'=> 100],
+                ['title'=> '父级','name'=> 'parent_id', 'width'=> 100, 'select'=> $list ],
+                ['title'=> '标题','name'=> 'title', 'width'=> 100],
+                ['title'=> '图标','name'=> 'icon', 'width'=> 100],
+                ['title'=> '链接','name'=> 'url', 'width'=> 100],
 
             ],
             'body'=>[
-                    'parent_id'=> (int)$id,
-                    'title'=> null,
-                    'icon'=> null,
-                    'url'=> null,
+                'parent_id'=> $selected,
+                'title'=> null,
+                'icon'=> null,
+                'url'=> null,
 
             ],
         ];
@@ -75,15 +75,22 @@ class AdminMenuController extends Controller
     public function edit($id)
     {
         $model = AdminMenu::find($id)->toArray();
+        $menus = AdminMenu::all(['id','title']);
+        $list = [];
+        foreach ($menus as $menu) {
+            if ((int)$id != (int)$menu->id)
+                $list[] = ['value' => $menu->id, 'label' => $menu->title];
+        }
+        $model['parent_id'] = $model['parent_id'] != 0 ? $model['parent_id']:null;
         $data = [
             'title'=> '编辑',
             'description'=> '菜单编辑',
             'headers'=>[
-                    ['title'=> '父级','name'=> 'parent_id', 'width'=> 100],
-                    ['title'=> '排序','name'=> 'order', 'width'=> 100],
-                    ['title'=> '标题','name'=> 'title', 'width'=> 100],
-                    ['title'=> '图标','name'=> 'icon', 'width'=> 100],
-                    ['title'=> '链接','name'=> 'url', 'width'=> 100],
+                ['title'=> '父级','name'=> 'parent_id', 'width'=> 100, 'select'=> $list ],
+                ['title'=> '排序','name'=> 'order', 'width'=> 100],
+                ['title'=> '标题','name'=> 'title', 'width'=> 100],
+                ['title'=> '图标','name'=> 'icon', 'width'=> 100],
+                ['title'=> '链接','name'=> 'url', 'width'=> 100],
 
             ],
             'body'=>$model,
