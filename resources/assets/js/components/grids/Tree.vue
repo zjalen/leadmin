@@ -41,11 +41,9 @@
         },
         mounted() {
           this.data3 = this.tree_data;
-          console.log(this.data3);
         },
         methods: {
             onSave() {
-                // console.log(this.data3);
                 this.$emit('headerClick',{act: 'save', data: this.data3});
             },
             onCreate(id) {

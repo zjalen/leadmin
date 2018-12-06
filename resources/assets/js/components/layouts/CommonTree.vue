@@ -35,17 +35,15 @@
         },
         methods: {
             onHeaderClick(obj) {
-                console.log(obj.act);
                 switch (obj.act) {
                     case 'create':
                         if (obj.id) {
-                            window.location.href = window.location.href + '/create?id=' + obj.id;
+                            window.location.href = window.location.href + '/create?parent=' + obj.id;
                         }else {
                             window.location.href = window.location.href + '/create';
                         }
                         break;
                     case 'save':
-                        console.log(obj.data);
                         this.onSave(obj.data);
                         break;
                 }
@@ -66,7 +64,6 @@
                 let that = this;
                 this.loading = true;
                 this.$axios.post(url, data).then(function (response) {
-                    // console.log(response.data);
                     if (!response.data.error_code) {
                         that.$message({
                             message: '提交成功',
@@ -80,7 +77,6 @@
                     }
                     that.loading = false;
                 }).catch(function (response) {
-                    console.log(response);//发生错误时执行的代码
                     that.loading = false;
                 });
             },
@@ -91,7 +87,6 @@
                         let url = window.location.href + '/' + id;
                         this.loading = true;
                         this.$axios.delete(url, {}).then(function (response) {
-                            // console.log(response.data);
                             if (!response.data.error_code) {
                                 that.$message({
                                     message: '删除成功',
@@ -106,7 +101,6 @@
                             }
                             that.loading = false;
                         }).catch(function (response) {
-                            console.log(response);//发生错误时执行的代码
                             that.loading = false;
                         });
                     })

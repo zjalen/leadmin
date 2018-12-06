@@ -62,7 +62,6 @@
             }
         },
         mounted() {
-            console.log('Component mounted.');
             this.table1 = this.table_data;
             this.loading = false;
         },
@@ -90,13 +89,11 @@
                     }
                     that.loading = false;
                 }).catch(function (response) {
-                    console.log(response);//发生错误时执行的代码
                     that.loading = false;
                 });
             },
             // 表格顶部按钮操作
             onHeaderClick(act) {
-                console.log(act);
                 switch (act) {
                     case 'filter':
                         this.dialogFormVisible = true;
@@ -111,7 +108,6 @@
             },
             // 表格内动作
             onAction(obj) {
-                console.log(obj);
                 switch (obj.act) {
                     case 'edit':
                         window.location.href = window.location.href + '/' + obj.data.id + '/edit';
@@ -126,7 +122,6 @@
             },
             // 排序
             onSort(obj) {
-                console.log(obj);
                 this.params['_sort'] = {};
                 this.params['_sort']['column'] = obj.prop;
                 if (obj.order === "ascending") {
@@ -139,7 +134,6 @@
             },
             // 搜索框按钮回调
             onAct(obj) {
-                console.log(obj);
                 this.params['filters'] = {};
                 switch (obj.act) {
                     case 'cancel':
@@ -166,7 +160,6 @@
                         let url = window.location.href + '/' + id;
                         this.loading = true;
                         this.$axios.delete(url, {}).then(function (response) {
-                            // console.log(response.data);
                             if (!response.data.error_code) {
                                 that.$message({
                                     message: '删除成功',
@@ -181,7 +174,6 @@
                             }
                             that.loading = false;
                         }).catch(function (response) {
-                            console.log(response);//发生错误时执行的代码
                             that.loading = false;
                         });
                     })
@@ -194,7 +186,6 @@
                 let that = this;
                 this.loading = true;
                 this.$axios.put(url, {data}).then(function (response) {
-                    // console.log(response.data);
                     if (!response.data.error_code) {
                         that.$message({
                             message: '提交成功',
@@ -208,7 +199,6 @@
                     }
                     that.loading = false;
                 }).catch(function (response) {
-                    console.log(response);//发生错误时执行的代码
                     that.loading = false;
                 });
             },

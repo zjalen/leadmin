@@ -61,7 +61,6 @@
         },
         mounted() {
             this.form1 = this.form_data;
-            console.log(this.form1);
         },
         methods: {
             onSubmit() {
@@ -75,7 +74,6 @@
                 this.form1.body[response.name] = response.path;
             },
             onRemove(obj) {
-                console.log(obj);
                 this.form1.body[obj] = null;
             }
         }

@@ -51,14 +51,12 @@
                         }
                         break;
                 }
-                console.log(obj);
             },
             onCreate() {
                 let url = window.location.href.split('/create')[0];
                 let that = this;
                 this.loading = true;
                 this.$axios.post(url, this.form_data.body).then(function(response){
-                    // console.log(response.data);
                     if (!response.data.error_code){
                         that.$message({
                             message: '提交成功',
@@ -79,7 +77,6 @@
                             type: 'error'
                         });
                     }else {
-                        console.log(response);//发生错误时执行的代码
                     }
                     that.loading = false;
                 });
@@ -89,7 +86,6 @@
                 let that = this;
                 this.loading = true;
                 this.$axios.put(url, this.form_data.body).then(function(response){
-                    // console.log(response.data);
                     if (!response.data.error_code){
                         that.$message({
                             message: '提交成功',
@@ -110,7 +106,6 @@
                             type: 'error'
                         });
                     } else {
-                        console.log(error.response);//发生错误时执行的代码
                     }
                     that.loading = false;
                 });

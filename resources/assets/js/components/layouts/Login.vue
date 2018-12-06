@@ -60,9 +60,6 @@
             };
         },
         mounted() {
-            // let url = 'http://localhost:8000/api/captcha';
-            // this.captcha_url = img;
-            // console.log(this.captcha_url);
             this.captcha_src = this.src.url;
             this.host =  window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
         },
@@ -78,7 +75,6 @@
                 let url = this.host + '/admin/auth/login';
                 that.submitting = true;
                 axios.post(url, this.form).then(function(response){
-                    console.log(response.data);
                     if(response.data.error_code){
                         that.refresh();
                         that.submitting = false;
@@ -87,7 +83,6 @@
                     window.location.href = response.data.url;
                     that.submitting = false;
                 }).catch(function (res) {
-                    console.log(res);
                     that.refresh();
                     that.submitting = false;
                 })

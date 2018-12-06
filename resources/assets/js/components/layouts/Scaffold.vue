@@ -170,7 +170,6 @@
         },
         methods:{
             onChange() {
-                console.log(this.config);
             },
             onDelete(i) {
                 if (this.tableData.length > 1) {
@@ -189,7 +188,6 @@
                     is_unique: false,
                 };
                 this.tableData.splice(i+1, 0, data);
-                // console.log(this.tableData);
             },
             onSubmit() {
                 if (this.config['create_controller']){
@@ -228,12 +226,10 @@
                     table_data: this.tableData
                 })
                     .then(function (response) {
-                        console.log(response.data);
                         that.$alert(response.data.error_message);
                         that.loading = false;
                     })
                     .catch(function (error) {
-                        console.log(error);
                         that.$alert(error);
                         that.loading = false;
                     });
