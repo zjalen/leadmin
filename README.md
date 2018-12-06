@@ -11,7 +11,7 @@ laravel 基于 element 的一个快捷表格表单式管理后台
 
 1. composer 安装组件
 ```php
-composer --require-dev zjalen/leadmin dev-master  //开发版本
+composer --require zjalen/leadmin dev-master -dev  //开发版本
 ```
 
 2. 发布资源
