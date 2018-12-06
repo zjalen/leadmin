@@ -37,7 +37,7 @@ class CreateAdminTables extends Migration
             $table->string('name', 50)->comment('名称');
             $table->string('slug', 50)->comment('标识');
             $table->string('http_method', 50)->comment('请求方法');
-            $table->string('http_path', 50)->comment('请求路由');
+            $table->text('http_path')->comment('请求路由')->nullable();
             $table->timestamps();
         });
 

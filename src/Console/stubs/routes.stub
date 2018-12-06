@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Routing\Router;
+use Zjalen\Leadmin\Facades\Leadmin;
 
-//Leadmin::registerAuthRoutes();
+Leadmin::registerAuthRoutes();
 
 Route::group([
     'prefix'        => 'admin',
     'namespace'     => 'App\\Leadmin\\Controllers',
-    'middleware'    => ['web', 'admin'],
+    'middleware'    => ['web', 'leadmin'],
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');

@@ -3,6 +3,10 @@
 namespace Zjalen\Leadmin\Auth\Database;
 
 use Illuminate\Database\Seeder;
+use Zjalen\Leadmin\Auth\Models\AdminMenu;
+use Zjalen\Leadmin\Auth\Models\AdminPermission;
+use Zjalen\Leadmin\Auth\Models\AdminRole;
+use Zjalen\Leadmin\Auth\Models\AdminUser;
 
 class AdminTablesSeeder extends Seeder
 {
@@ -14,26 +18,26 @@ class AdminTablesSeeder extends Seeder
     public function run()
     {
         // create a user.
-        Administrator::truncate();
-        Administrator::create([
+        AdminUser::truncate();
+        AdminUser::create([
             'username' => 'admin',
             'password' => bcrypt('admin'),
             'name'     => '超级管理员',
         ]);
 
         // create a role.
-        Role::truncate();
-        Role::create([
+        AdminRole::truncate();
+        AdminRole::create([
             'name' => '超级管理',
             'slug' => 'administrator',
         ]);
 
         // add role to user.
-        Administrator::first()->roles()->save(Role::first());
+        AdminUser::first()->roles()->save(AdminRole::first());
 
         //create a permission
-        Permission::truncate();
-        Permission::insert([
+        AdminPermission::truncate();
+        AdminPermission::insert([
             [
                 'name'        => '超级管理权限',
                 'slug'        => '*',
@@ -60,18 +64,11 @@ class AdminTablesSeeder extends Seeder
             ],
         ]);
 
-        Role::first()->permissions()->save(Permission::first());
+        AdminRole::first()->permissions()->save(AdminPermission::first());
 
         // add default menus.
-        Menu::truncate();
-        Menu::insert([
-            [
-                'parent_id' => 0,
-                'order'     => 1,
-                'title'     => '工作面板',
-                'icon'      => 'fa-bar-chart',
-                'url'       => 'panel',
-            ],
+        AdminMenu::truncate();
+        AdminMenu::insert([
             [
                 'parent_id' => 0,
                 'order'     => 2,
@@ -124,7 +121,7 @@ class AdminTablesSeeder extends Seeder
         ]);
 
         // add role to menu.
-        Menu::find(2)->roles()->save(Role::first());
-        Menu::find(7)->roles()->save(Role::first());
+        AdminMenu::find(2)->roles()->save(AdminRole::first());
+        AdminMenu::find(7)->roles()->save(AdminRole::first());
     }
 }

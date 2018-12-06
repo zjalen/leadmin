@@ -67,7 +67,7 @@
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img style="width: 28px;height: 28px;" src="{{ asset(\Zjalen\Leadmin\Facades\Leadmin::user()->avatar) }}">
+                    <img style="width: 28px;height: 28px;" src="{{ asset(\Zjalen\Leadmin\Facades\Leadmin::user()->avatar ?: 'vendor/leadmin/images/avatar-default.jpg') }}">
                     <span class="username">{{ \Zjalen\Leadmin\Facades\Leadmin::user()->name }}</span>
                     <b class="caret"></b>
                 </a>

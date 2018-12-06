@@ -6,13 +6,17 @@
  * Time: 00:36
  */
 
-namespace Zjalen\Leadmin\Controllers;
+namespace App\Leadmin\Controllers;
 
 
 use Zjalen\Leadmin\Auth\Models\AdminMenu;
 
 class HomeController
 {
+    /**
+     * index
+     *
+     */
     public function index()
     {
         $model = new AdminMenu();

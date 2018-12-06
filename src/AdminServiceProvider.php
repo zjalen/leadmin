@@ -56,7 +56,9 @@ class AdminServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__.'/../resources/views' => resource_path('views/leadmin')], 'leadmin-views');
             $this->publishes([__DIR__.'/../resources/assets/js/components' => resource_path('assets/js/components/leadmin')], 'leadmin-assets');
+            $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'leadmin-migrations');
             $this->publishes([__DIR__.'/../public' => public_path('vendor/leadmin')], 'leadmin-public');
+            $this->publishes([__DIR__.'/../public/fonts' => public_path('/')], 'leadmin-fonts');
         }
 
 //        //remove default feature of double encoding enable in laravel 5.6 or later.
