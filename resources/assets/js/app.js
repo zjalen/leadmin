@@ -29,6 +29,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('common-table', require('./components/layouts/CommonTable.vue'));
 Vue.component('common-form', require('./components/layouts/CommonForm.vue'));
 Vue.component('common-tree', require('./components/layouts/CommonTree.vue'));
+Vue.component('page-login', require('./components/layouts/Login.vue'));
+Vue.component('page-scaffold', require('./components/layouts/Scaffold.vue'));
 
 const app = new Vue({
     el: '#app'
