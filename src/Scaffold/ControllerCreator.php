@@ -74,7 +74,7 @@ class ControllerCreator
         foreach ($table as $tb){
             $name = $tb['name'];
             $comment = $tb['comment'];
-            $headers .= "                    ['title'=> '{$comment}','name'=> '{$name}'\n";
+            $headers .= "                    ['title'=> '{$comment}','name'=> '{$name}'\n ],";
             $filters .= "                    '{$name}'=> array_key_exists('{$name}', \$conditions) ? \$conditions['{$name}']: null ,\n";
             $form_body .= "                    '{$name}'=> null,\n";
         }
