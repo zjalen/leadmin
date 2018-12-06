@@ -5,7 +5,7 @@
             <span class="desc">{{table_data.description}}</span>
         </div>
         <el-row :gutter="20">
-            <el-col style="margin-bottom: 20px;" :xs="24" :sm="6" :md="6" :lg="6" :xl="6" :span="6" v-for="(value, key) in boxes" :key="key">
+            <el-col style="margin-bottom: 20px;" :xs="24" :sm="12" :md="6" :lg="6" :xl="6" :span="6" v-for="(value, key) in boxes" :key="key">
                 <a :href="value.link">
                     <info_box :color="value.color" :icon="value.icon" :title="value.title" :description="value.description"></info_box>
                 </a>
@@ -102,7 +102,7 @@
                         this.dialogFormVisible = true;
                         break;
                     case 'create':
-                        window.top.location.href = window.top.location.href + '/create';
+                        window.location.href = window.location.href + '/create';
                         break;
                     case 'export':
 
@@ -114,7 +114,7 @@
                 console.log(obj);
                 switch (obj.act) {
                     case 'edit':
-                        window.top.location.href = window.top.location.href + '/' + obj.data.id + '/edit';
+                        window.location.href = window.location.href + '/' + obj.data.id + '/edit';
                         break;
                     case 'delete':
                         this.onDelete(obj.data.id);
@@ -163,7 +163,7 @@
                 let that = this;
                 this.$confirm('是否确认删除？')
                     .then(() => {
-                        let url = window.top.location.href + '/' + id;
+                        let url = window.location.href + '/' + id;
                         this.loading = true;
                         this.$axios.delete(url, {}).then(function (response) {
                             // console.log(response.data);
@@ -190,7 +190,7 @@
             },
             // 更新，switch开关切换
             onUpdate(data) {
-                let url = window.top.location.href + '/' + data.id;
+                let url = window.location.href + '/' + data.id;
                 let that = this;
                 this.loading = true;
                 this.$axios.put(url, {data}).then(function (response) {
@@ -218,7 +218,7 @@
 
 <style scoped>
     .container {
-        padding: 30px;
+        padding: 10px 15px;
     }
     .content-header {
         font-size: 1.6rem;
@@ -236,21 +236,8 @@
         justify-content: flex-end;
     }
 
-    .box-header {
-        color: #409EFF;
-        display: block;
-        padding: 10px;
-        position: relative;
+    .box {
+        width: auto;
     }
 
-    .box {
-        position: relative;
-        border-radius: 3px;
-        background: #ffffff;
-        border-top: 3px solid #409EFF;
-        margin-bottom: 20px;
-        padding-bottom: 5px;
-        width: 100%;
-        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    }
 </style>

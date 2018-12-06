@@ -28,6 +28,7 @@ Vue.prototype.$axios = axios;
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('common-table', require('./components/layouts/CommonTable.vue'));
 Vue.component('common-form', require('./components/layouts/CommonForm.vue'));
+Vue.component('common-tree', require('./components/layouts/CommonTree.vue'));
 
 const app = new Vue({
     el: '#app'

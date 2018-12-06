@@ -46,8 +46,19 @@
         background: #0000000f;
     }
 
-    #main :hover > .grid-content-left{
-        font-size: 65px;
+    .grid-content-left > i {
+        transition: All 0.4s ease-in-out;
+        -webkit-transition: All 0.4s ease-in-out;
+        -moz-transition: All 0.4s ease-in-out;
+        -o-transition: All 0.4s ease-in-out;
+    }
+
+    #main :hover > .grid-content-left > i{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        -ms-transform: scale(1.5);
     }
 
     .grid-content-right {

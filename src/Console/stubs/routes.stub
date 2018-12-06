@@ -1,3 +1,16 @@
 <?php
 
-Route::resource('scaffold', 'Zjalen\\Leadmin\\Controllers\\ScaffoldController');
+use Illuminate\Routing\Router;
+
+//Leadmin::registerAuthRoutes();
+
+Route::group([
+    'prefix'        => 'admin',
+    'namespace'     => 'App\\Leadmin\\Controllers',
+    'middleware'    => ['web', 'admin'],
+], function (Router $router) {
+
+    $router->get('/', 'HomeController@index');
+    $router->get('welcome', 'HomeController@welcome');
+
+});

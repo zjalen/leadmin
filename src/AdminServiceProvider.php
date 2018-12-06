@@ -2,6 +2,7 @@
 
 namespace Zjalen\Leadmin;
 
+use Zjalen\Leadmin\Auth\Models\AdminUser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,7 +22,10 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-
+        'leadmin.auth'        => \Zjalen\Leadmin\Auth\Middleware\Authenticate::class,
+//        'admin.pjax'        => \Zjalen\Leadmin\Auth\Middleware\Pjax::class,
+//        'admin.log'         => \Zjalen\Leadmin\Auth\Middleware\LogOperation::class,
+        'leadmin.permission'  => \Zjalen\Leadmin\Auth\Middleware\Permission::class,
     ];
 
     /**
@@ -30,7 +34,12 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $middlewareGroups = [
-
+        'leadmin' => [
+            'leadmin.auth',
+//            'admin.pjax',
+//            'admin.log',
+            'leadmin.permission',
+        ],
     ];
 
     /**
@@ -50,11 +59,11 @@ class AdminServiceProvider extends ServiceProvider
             $this->publishes([__DIR__.'/../public' => public_path('vendor/leadmin')], 'leadmin-public');
         }
 
-        //remove default feature of double encoding enable in laravel 5.6 or later.
-        $bladeReflectionClass = new \ReflectionClass('\Illuminate\View\Compilers\BladeCompiler');
-        if ($bladeReflectionClass->hasMethod('withoutDoubleEncoding')) {
-            Blade::withoutDoubleEncoding();
-        }
+//        //remove default feature of double encoding enable in laravel 5.6 or later.
+//        $bladeReflectionClass = new \ReflectionClass('\Illuminate\View\Compilers\BladeCompiler');
+//        if ($bladeReflectionClass->hasMethod('withoutDoubleEncoding')) {
+//            Blade::withoutDoubleEncoding();
+//        }
     }
 
     /**
@@ -64,9 +73,9 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->loadAdminAuthConfig();
+        $this->loadAdminAuthConfig();
 
-//        $this->registerRouteMiddleware();
+        $this->registerRouteMiddleware();
 
         $this->commands($this->commands);
     }
@@ -78,7 +87,24 @@ class AdminServiceProvider extends ServiceProvider
      */
     protected function loadAdminAuthConfig()
     {
-        config(array_dot(config('admin.auth', []), 'auth.'));
+        $array_auth = [
+
+        'controller' => \Zjalen\Leadmin\Controllers\LogAuthController::class,
+
+        'guards' => [
+            'leadmin' => [
+                'driver'   => 'session',
+                'provider' => 'leadmin',
+            ],
+        ],
+
+        'providers' => [
+            'leadmin' => [
+                'driver' => 'eloquent',
+                'model'  => AdminUser::class,
+            ],
+        ]];
+        config(array_dot($array_auth, 'auth.'));
     }
 
     /**

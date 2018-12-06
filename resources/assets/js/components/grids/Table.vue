@@ -25,6 +25,9 @@
                     <span v-else-if="value.text_tag">
                         <span class="label" :class="value.text_tag">{{scope.row[value.name]}}</span>
                     </span>
+                    <span v-else-if="value.multiselect">
+                        <span v-for="(v,k) in scope.row[value.name]" :key="k" class="label label-primary" style="margin-left: 2px;">{{v.name ? v.name : v}}</span>
+                    </span>
                     <span v-else>{{scope.row[value.name]}}</span>
                 </template>
             </el-table-column>

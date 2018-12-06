@@ -18,7 +18,12 @@ class DummyClass extends Controller
      */
     public function index(DummyRequest $request)
     {
-        $filters = $request->input('filters', []);
+        $conditions = $request->input('filters');
+        if ($conditions) {
+            $conditions = json_decode(stripslashes($conditions), true);
+        }else {
+            $conditions = [];
+        }
         $sort = $request->input('_sort',['column'=> 'created_at', 'type'=> 'desc']);
         $limit = $request->input('limit', 20);
         $skip = $request->input('skip', 0);
@@ -32,7 +37,7 @@ class DummyClass extends Controller
             'header_actions'=>[
                 ['action'=>'create', 'type'=> 'primary', 'text'=> '添加', 'icon'=> 'fa-plus'],
                 ['action'=>'filter', 'type'=> 'danger', 'text'=> '筛选', 'icon'=> 'fa-search'],
-                ['action'=>'export', 'type'=> 'success', 'text'=> '导出', 'icon'=> 'fa-table'],
+                //['action'=>'export', 'type'=> 'success', 'text'=> '导出', 'icon'=> 'fa-table'],
             ],
             'body'=>[],
             'actions'=>[
@@ -41,11 +46,29 @@ class DummyClass extends Controller
             ],
             'count'=> 0,
         ];
-        if (count($filters) > 0){
-            $data['body'] = DummyModel::where($filters)->orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
-            $data['count'] = DummyModel::where($filters)->count();
+        if (count($conditions) > 0){
+            $data['body'] = DummyModel::where(function ($query) use ($conditions){
+                foreach ($conditions as $key => $condition) {
+                    if (strstr( $key, '%')){
+                        $key = trim($key, '%');
+                        $query->where($key, 'like', '%'.$condition.'%');
+                    }else {
+                        $query->where($key, $condition);
+                    }
+                }
+            })->orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->with('roles')->get()->toArray();
+            $data['count'] = DummyModel::where(function ($query) use ($conditions){
+                foreach ($conditions as $key => $condition) {
+                    if (strstr( $key, '%')){
+                        $key = trim($key, '%');
+                        $query->where($key, 'like', '%'.$condition.'%');
+                    }else {
+                        $query->where($key, $condition);
+                    }
+                }
+            })->count();
         }else {
-            $data['body'] = DummyModel::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
+            $data['body'] = DummyModel::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->with('roles')->get()->toArray();
             $data['count'] = DummyModel::all()->count();
         }
         $filters = [
@@ -72,88 +95,88 @@ class DummyClass extends Controller
     }
 
     /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function create()
-        {
-            $data = [
-                'title'=> '添加',
-                'description'=> '添加设备',
-                'headers'=>[
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        $data = [
+            'title'=> '添加',
+            'description'=> '添加管理',
+            'headers'=>[
 //DummyHeader
-                ],
-                'body'=>[
+            ],
+            'body'=>[
 //DummyFormBody
-                ],
-            ];
-            return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
+            ],
+        ];
+        return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
+    }
+
+    /**
+     * @param DummyRequest $request
+     * @return array
+     */
+    public function store(DummyRequest $request)
+    {
+        $receive = $request->input();
+        $model = new DummyModel;
+        $model->fill($receive);
+        $res = $model->save();
+
+        if ($res) {
+            return ['error_code' => 0, 'error_message' => '更新成功'];
+        }else {
+            return ['error_code' => 1, 'error_message' => '更新失败'];
         }
+    }
 
-        /**
-         * @param DummyRequest $request
-         * @return array
-         */
-        public function store(DummyRequest $request)
-        {
-            $receive = $request->input();
-            $model = new DummyModel;
-            $model->fill($receive);
-            $res = $model->save();
-
-            if ($res) {
-                return ['error_code' => 0, 'error_message' => '更新成功'];
-            }else {
-                return ['error_code' => 1, 'error_message' => '更新失败'];
-            }
-        }
-
-        /**
-         * @param $id
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function edit($id)
-        {
-            $model = DummyModel::find($id)->toArray();
-            $data = [
-                'title'=> '添加',
-                'description'=> '添加设备',
-                'headers'=>[
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $model = DummyModel::find($id);
+        $data = [
+            'title'=> '编辑',
+            'description'=> '编辑管理',
+            'headers'=>[
 //DummyHeader
-                ],
-                'body'=>$model,
-            ];
-            return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
+            ],
+            'body'=>$model,
+        ];
+        return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
+    }
+
+    /**
+     * @param DummyRequest $request
+     * @param $id
+     * @return array
+     */
+    public function update(DummyRequest $request, $id)
+    {
+        $receive = $request->input();
+        $model = DummyModel::find($id);
+        $res = $model->update($receive);
+        if ($res) {
+            return ['error_code' => 0, 'error_message' => '更新成功'];
+        }else {
+            return ['error_code' => 1, 'error_message' => '更新失败'];
+        }
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function destroy($id)
+    {
+        $res = DummyModel::destroy($id);
+        if ($res){
+            return ['error_code'=> 0, 'error_message'=>'删除成功'];
+        }else {
+            return ['error_code'=> 1, 'error_message'=>'删除失败'];
         }
 
-        /**
-         * @param DummyRequest $request
-         * @param $id
-         * @return array
-         */
-        public function update(DummyRequest $request, $id)
-        {
-            $receive = $request->input();
-            $model = DummyModel::find($id);
-            $res = $model->update($receive);
-            if ($res) {
-                return ['error_code' => 0, 'error_message' => '更新成功'];
-            }else {
-                return ['error_code' => 1, 'error_message' => '更新失败'];
-            }
-        }
-
-        /**
-         * @param $id
-         * @return array
-         */
-        public function destroy($id)
-        {
-            $res = DummyModel::destroy($id);
-            if ($res){
-                return ['error_code'=> 0, 'error_message'=>'删除成功'];
-            }else {
-                return ['error_code'=> 1, 'error_message'=>'删除失败'];
-            }
-
-        }
+    }
 }

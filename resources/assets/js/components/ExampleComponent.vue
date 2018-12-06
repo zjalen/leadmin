@@ -41,6 +41,11 @@
                 <custom_form :form_data="form1" @action="onAct"></custom_form>
             </el-col>
         </el-row>
+        <el-row>
+            <el-col :span="24">
+                <custom_tree :tree_data="tree_data" @action="onAct"></custom_tree>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -48,11 +53,13 @@
     import info_box from './widgets/InfoBox';
     import grid_table from './grids/Table';
     import custom_form from './forms/Form';
+    import custom_tree from './grids/Tree';
     export default {
         components: {
             grid_table,
             info_box,
             custom_form,
+            custom_tree
         },
         data() {
             return {
@@ -109,6 +116,51 @@
                     ],
                     body: {name: '张三', type: 2, multiselect:[1, 4], radio: 3, open:true, date: '2018-11-05 11:22:00', datetime: '2018-11-11 11:22:00',textarea:'这是多行文本的演示，这是多行文本的演示，这是多行文本的演示，这是多行文本的演示，这是多行文本的演示，这是多行文本的演示，'},
                 },
+                tree_data: [{
+                    id: 1,
+                    label: '一级 1',
+                    children: [{
+                        id: 4,
+                        label: '二级 1-1',
+                        children: [{
+                            id: 9,
+                            label: '三级 1-1-1'
+                        }, {
+                            id: 10,
+                            label: '三级 1-1-2'
+                        }]
+                    }]
+                }, {
+                    id: 2,
+                    label: '一级 2',
+                    children: [{
+                        id: 5,
+                        label: '二级 2-1'
+                    }, {
+                        id: 6,
+                        label: '二级 2-2'
+                    }]
+                }, {
+                    id: 3,
+                    label: '一级 3',
+                    children: [{
+                        id: 7,
+                        label: '二级 3-1'
+                    }, {
+                        id: 8,
+                        label: '二级 3-2',
+                        children: [{
+                            id: 11,
+                            label: '三级 3-2-1'
+                        }, {
+                            id: 12,
+                            label: '三级 3-2-2'
+                        }, {
+                            id: 13,
+                            label: '三级 3-2-3'
+                        }]
+                    }]
+                }],
             }
         },
         mounted() {

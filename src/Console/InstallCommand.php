@@ -3,6 +3,8 @@
 namespace Zjalen\Leadmin\Console;
 
 use Illuminate\Console\Command;
+use Zjalen\Leadmin\Auth\Database\AdminTablesSeeder;
+use Zjalen\Leadmin\Auth\Models\AdminUser;
 
 class InstallCommand extends Command
 {
@@ -34,9 +36,20 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-//        $this->initDatabase();
+        $this->initDatabase();
 
         $this->initAdminDirectory();
+    }
+
+    public function initDatabase()
+    {
+        $this->call('migrate');
+
+        $userModel = AdminUser::class;
+
+        if ($userModel::count() == 0) {
+            $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
+        }
     }
 
     /**
@@ -96,7 +109,7 @@ class InstallCommand extends Command
         $file = $this->directory.'/routes.php';
 
         $contents = $this->getStub('routes');
-        $this->laravel['files']->put($file, str_replace('DummyNamespace', config('admin.route.namespace'), $contents));
+        $this->laravel['files']->put($file, $contents);
         $this->line('<info>Routes file was created:</info> '.str_replace(base_path(), '', $file));
     }
 

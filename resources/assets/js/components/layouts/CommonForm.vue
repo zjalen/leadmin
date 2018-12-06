@@ -54,7 +54,7 @@
                 console.log(obj);
             },
             onCreate() {
-                let url = window.top.location.href.split('/create')[0];
+                let url = window.location.href.split('/create')[0];
                 let that = this;
                 this.loading = true;
                 this.$axios.post(url, this.form_data.body).then(function(response){
@@ -64,7 +64,7 @@
                             message: '提交成功',
                             type: 'success'
                         });
-                        window.location.href = window.top.location.href.split('/create')[0];
+                        window.location.href = window.location.href.split('/create')[0];
                     }else{
                         that.$message({
                             message: response.data.error_message,
@@ -85,7 +85,7 @@
                 });
             },
             onUpdate() {
-                let url = window.top.location.href.split('/edit')[0];
+                let url = window.location.href.split('/edit')[0];
                 let that = this;
                 this.loading = true;
                 this.$axios.put(url, this.form_data.body).then(function(response){
@@ -95,7 +95,7 @@
                             message: '提交成功',
                             type: 'success'
                         });
-                        window.location.href = window.top.location.href.split( '/' + that.form_data.body.id + '/edit')[0];
+                        window.location.href = window.location.href.split( '/' + that.form_data.body.id + '/edit')[0];
                     } else{
                         that.$message({
                             message: response.data.error_message,
@@ -121,7 +121,7 @@
 <style scoped>
     .form-content {
         width: auto;
-        margin: 20px;
+        padding: 10px 15px;
     }
 
     .content-header {

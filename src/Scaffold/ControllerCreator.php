@@ -74,9 +74,8 @@ class ControllerCreator
         foreach ($table as $tb){
             $name = $tb['name'];
             $comment = $tb['comment'];
-//            $grids .= "\$grid->column('{$name}','{$comment}');\n";
-            $headers .= "                    ['title'=> '{$comment}','name'=> '{$name}', 'width'=> 100],\n";
-            $filters .= "                    '{$name}'=> array_key_exists('{$name}', \$filters) ? \$filters['{$name}']: null ,\n";
+            $headers .= "                    ['title'=> '{$comment}','name'=> '{$name}'\n";
+            $filters .= "                    '{$name}'=> array_key_exists('{$name}', \$conditions) ? \$conditions['{$name}']: null ,\n";
             $form_body .= "                    '{$name}'=> null,\n";
         }
         return str_replace(
