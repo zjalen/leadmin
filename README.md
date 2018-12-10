@@ -1,4 +1,4 @@
-# leadmin (Larave + element + admin)
+# leadmin (Laravel + element + admin)
 laravel 基于 element 的一个快捷表格表单式管理后台
 
 *目前功能正在完善中，商业项目请谨慎使用*
@@ -45,4 +45,5 @@ php artisan storage:link
 
 ## 其他
 图片验证码引用自 `"mews/captcha" : "~2.2"` 
+
 部分设计模式参考自项目 `encore/laravel-admin`
