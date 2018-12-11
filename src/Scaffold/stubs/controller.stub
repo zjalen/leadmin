@@ -56,7 +56,7 @@ class DummyClass extends Controller
                         $query->where($key, $condition);
                     }
                 }
-            })->orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->with('roles')->get()->toArray();
+            })->orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
             $data['count'] = DummyModel::where(function ($query) use ($conditions){
                 foreach ($conditions as $key => $condition) {
                     if (strstr( $key, '%')){
@@ -68,7 +68,7 @@ class DummyClass extends Controller
                 }
             })->count();
         }else {
-            $data['body'] = DummyModel::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->with('roles')->get()->toArray();
+            $data['body'] = DummyModel::orderBy($sort['column'], $sort['type'])->limit($limit)->skip($skip)->get()->toArray();
             $data['count'] = DummyModel::all()->count();
         }
         $filters = [
