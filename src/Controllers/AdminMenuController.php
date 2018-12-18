@@ -106,6 +106,11 @@ class AdminMenuController extends Controller
     public function update(AdminMenuRequest $request, $id)
     {
         $receive = $request->input();
+        foreach ($receive as $key => $value){
+            if ($value == null){
+                $receive[$key] = 0;
+            }
+        }
         $model = AdminMenu::find($id);
         $res = $model->update($receive);
         if ($res) {
