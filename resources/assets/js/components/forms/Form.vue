@@ -18,6 +18,21 @@
                 <el-radio-group v-else-if="value.radio" v-model="form1.body[value.name]">
                     <el-radio  v-for="(v, k) in value.radio" :key="k" :label="v.id">{{v.name}}</el-radio>
                 </el-radio-group>
+
+                <el-cascader v-else-if="value.china_area"
+                             size="large"
+                             :options="regionData"
+                             v-model="form1.body[value.name]">
+                </el-cascader>
+
+                <el-col :span="12" v-else-if="value.cascader">
+                    <el-cascader
+                            :options="options"
+                            v-model="form1.body[value.name]"
+                            change-on-select
+                            style="width:300px"
+                    ></el-cascader>
+                </el-col>
                 <span v-else-if="value.upload">
                     <el-upload
                             class="avatar-uploader"
@@ -43,6 +58,7 @@
     </div>
 </template>
 <script>
+    import { regionData } from 'element-china-area-data'
     export default {
         props: ['form_data'],
         components: {
@@ -52,6 +68,9 @@
                 form1: {},
                 headers: {'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
                 images:[],
+                regionData:regionData,
+                options:[]
+
             }
         },
         computed: {
@@ -61,6 +80,10 @@
         },
         mounted() {
             this.form1 = this.form_data;
+            if(this.form1.body.cascader_list){
+                this.options = JSON.parse(this.form1.body.cascader_list)
+            }
+
         },
         methods: {
             onSubmit() {

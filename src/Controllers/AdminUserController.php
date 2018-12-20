@@ -51,8 +51,11 @@ class AdminUserController extends Controller
             ],
             'body'=>[],
             'actions'=>[
-                ['action'=>'edit', 'type'=> 'primary', 'text'=> '编辑', 'icon'=> 'fa-edit'],
-                ['action'=>'delete', 'type'=> 'danger', 'text'=> '删除', 'icon'=> 'fa-trash'],
+                'width'=>'200',
+                'button'=>[
+                    ['action'=>'edit', 'type'=> 'primary', 'text'=> '编辑', 'icon'=> 'fa-edit'],
+                    ['action'=>'delete', 'type'=> 'danger', 'text'=> '删除', 'icon'=> 'fa-trash'],
+                ]
             ],
             'count'=> 0,
         ];

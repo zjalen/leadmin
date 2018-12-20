@@ -48,7 +48,19 @@ class AdminTablesSeeder extends Seeder
                 'name'        => '登录',
                 'slug'        => 'auth.login',
                 'http_method' => '',
-                'http_path'   => "admin/auth/login\r\nadmin/auth/logout",
+                'http_path'   => "admin/auth/login\r\nadmin/auth/logout\r\nadmin/auth/captcha",
+            ],
+            [
+                'name'        => '基础权限',
+                'slug'        => 'base',
+                'http_method' => 'GET',
+                'http_path'   => "admin",
+            ],
+            [
+                'name'        => '欢迎页',
+                'slug'        => 'welcome',
+                'http_method' => 'GET',
+                'http_path'   => 'admin/welcome',
             ],
             [
                 'name'        => '用户设置',

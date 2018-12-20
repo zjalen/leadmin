@@ -4,6 +4,7 @@ namespace Zjalen\Leadmin\Controllers;
 
 use Zjalen\Leadmin\Auth\Models\AdminMenu;
 
+use Zjalen\Leadmin\Auth\Models\AdminRole;
 use Zjalen\Leadmin\Requests\AdminMenuRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -91,6 +92,7 @@ class AdminMenuController extends Controller
                 ['title'=> '标题','name'=> 'title', 'width'=> 100],
                 ['title'=> '图标','name'=> 'icon', 'width'=> 100],
                 ['title'=> '链接','name'=> 'url', 'width'=> 100],
+                ['title'=> '访问角色','name'=> 'roles', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
 
             ],
             'body'=>$model,

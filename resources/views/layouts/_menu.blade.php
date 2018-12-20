@@ -1,4 +1,4 @@
-{{--@if(Leadmin::user()->visible($item['roles']))--}}
+@if(Leadmin::user()->visible($item['roles']))
     @if(!isset($item['children']))
         <li>
             @if(url()->isValidUrl($item['url']))
@@ -24,4 +24,4 @@
             </ul>
         </li>
     @endif
-{{--@endif--}}
+@endif
