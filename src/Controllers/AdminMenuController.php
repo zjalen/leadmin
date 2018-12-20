@@ -33,14 +33,14 @@ class AdminMenuController extends Controller
                 ['title'=> '标题','name'=> 'title', 'width'=> 100],
                 ['title'=> '图标','name'=> 'icon', 'width'=> 100],
                 ['title'=> '链接','name'=> 'url', 'width'=> 100],
-
+                ['title'=> '访问角色','name'=> 'roles', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
             ],
             'body'=>[
                 'parent_id'=> $selected,
                 'title'=> null,
                 'icon'=> null,
                 'url'=> null,
-
+                'roles'=>[]
             ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data) ]);
