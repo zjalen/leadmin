@@ -2,9 +2,7 @@
     <div class="container">
         <el-row>
             <el-col :span="6">
-                <a :href="box1.link">
-                    <info_box style="margin-bottom: 10px;" :color="box1.color" :icon="box1.icon" :title="box1.title" :description="box1.description"></info_box>
-                </a>
+                <info_box style="margin-bottom: 10px;" :color="box1.color" :icon="box1.icon" :title="box1.title" :description="box1.description"></info_box>
 
             </el-col>
             <el-col :span="12">
