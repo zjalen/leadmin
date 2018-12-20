@@ -31,7 +31,7 @@ class AdminPermissionController extends Controller
             'title'=> '权限管理',
             'description'=> '细分权限管理',
             'headers'=>[
-                //['title'=> 'id','name'=> 'id',],
+                ['title'=> 'id','name'=> 'id', 'width'=>100],
                 ['title'=> '名称','name'=> 'name',],
                 ['title'=> '标识','name'=> 'slug',],
                 ['title'=> '请求方法','name'=> 'http_method','multiselect'=> true],

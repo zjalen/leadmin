@@ -75,7 +75,8 @@ class AdminMenuController extends Controller
      */
     public function edit($id)
     {
-        $model = AdminMenu::find($id)->toArray();
+        $model = AdminMenu::find($id);
+        $roles = $model->roles->pluck('id')->toArray();
         $menus = AdminMenu::all(['id','title']);
         $list = [];
         foreach ($menus as $menu) {
@@ -83,17 +84,18 @@ class AdminMenuController extends Controller
                 $list[] = ['value' => $menu->id, 'label' => $menu->title];
         }
         $model['parent_id'] = $model['parent_id'] != 0 ? $model['parent_id']:null;
+        $model['roles'] = $roles;
         $data = [
             'title'=> '编辑',
             'description'=> '菜单编辑',
             'headers'=>[
+                ['title'=> 'ID','name'=> 'id', 'width'=> 100, 'hidden'=>true],
                 ['title'=> '父级','name'=> 'parent_id', 'width'=> 100, 'select'=> $list ],
                 ['title'=> '排序','name'=> 'order', 'width'=> 100],
                 ['title'=> '标题','name'=> 'title', 'width'=> 100],
                 ['title'=> '图标','name'=> 'icon', 'width'=> 100],
                 ['title'=> '链接','name'=> 'url', 'width'=> 100],
                 ['title'=> '访问角色','name'=> 'roles', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
-
             ],
             'body'=>$model,
         ];
@@ -114,6 +116,9 @@ class AdminMenuController extends Controller
             }
         }
         $model = AdminMenu::find($id);
+        if ($receive['roles']){
+            $model->roles()->sync($receive['roles']);
+        }
         $res = $model->update($receive);
         if ($res) {
             return ['error_code' => 0, 'error_message' => '更新成功'];

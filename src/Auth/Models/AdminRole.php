@@ -48,6 +48,16 @@ class AdminRole extends Model
     }
 
     /**
+     * A role belongs to many menu.
+     *
+     * @return BelongsToMany
+     */
+    public function menu() : BelongsToMany
+    {
+        return $this->belongsToMany(AdminMenu::class, 'admin_role_menu', 'role_id', 'menu_id');
+    }
+
+    /**
      * Check user has no permission.
      *
      * @param $permission
@@ -70,7 +80,7 @@ class AdminRole extends Model
 
         static::deleting(function ($model) {
             $model->users()->detach();
-
+            $model->menu()->detach();
             $model->permissions()->detach();
         });
     }

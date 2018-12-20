@@ -147,4 +147,18 @@ class AdminUser extends Model implements AuthenticatableContract
 
         return $this->inRoles($roles) || $this->isAdministrator();
     }
+
+    /**
+     * Detach models from the relationship.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            $model->roles()->detach();
+        });
+    }
 }

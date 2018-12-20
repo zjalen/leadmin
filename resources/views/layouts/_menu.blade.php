@@ -1,4 +1,4 @@
-@if(Leadmin::user()->visible($item['roles']))
+@if(\Zjalen\Leadmin\Facades\Leadmin::user()->visible($item['roles']))
     @if(!isset($item['children']))
         <li>
             @if(url()->isValidUrl($item['url']))

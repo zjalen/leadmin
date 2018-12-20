@@ -32,10 +32,10 @@ class AdminRoleController extends Controller
             'title'=> '角色管理',
             'description'=> '角色创建与权限分配',
             'headers'=>[
-                //['title'=> 'id','name'=> 'id', 'width'=> 100],
-                    ['title'=> '名称','name'=> 'name'],
-                    ['title'=> '标识','name'=> 'slug'],
-                    ['title'=> '权限','name'=> 'permissions', 'multiselect'=>true],
+                ['title'=> 'id','name'=> 'id', 'width'=> 100],
+                ['title'=> '名称','name'=> 'name'],
+                ['title'=> '标识','name'=> 'slug'],
+                ['title'=> '权限','name'=> 'permissions', 'multiselect'=>true],
             ],
             'header_actions'=>[
                 ['action'=>'create', 'type'=> 'primary', 'text'=> '添加', 'icon'=> 'fa-plus'],
@@ -79,12 +79,12 @@ class AdminRoleController extends Controller
         }
         $filters = [
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name'],
-                    ['title'=> '标识','name'=> 'slug']
+                ['title'=> '名称','name'=> 'name'],
+                ['title'=> '标识','name'=> 'slug']
             ],
             'body'=>[
-                    'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
-                    'slug'=> array_key_exists('slug', $conditions) ? $conditions['slug']: null ,
+                'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
+                'slug'=> array_key_exists('slug', $conditions) ? $conditions['slug']: null ,
 
             ],
         ];
@@ -112,14 +112,14 @@ class AdminRoleController extends Controller
             'title'=> '添加',
             'description'=> '添加管理',
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name', 'width'=> 100],
-                    ['title'=> '标识','name'=> 'slug', 'width'=> 100],
-                    ['title'=> '权限','name'=> 'permissions', 'multiselect'=>AdminPermission::all(['name','id'])->toArray()],
+                ['title'=> '名称','name'=> 'name', 'width'=> 100],
+                ['title'=> '标识','name'=> 'slug', 'width'=> 100],
+                ['title'=> '权限','name'=> 'permissions', 'multiselect'=>AdminPermission::all(['name','id'])->toArray()],
             ],
             'body'=>[
-                    'name'=> null,
-                    'slug'=> null,
-
+                'name'=> null,
+                'slug'=> null,
+                'permissions'=>[]
             ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
@@ -160,9 +160,9 @@ class AdminRoleController extends Controller
             'title'=> '编辑',
             'description'=> '编辑管理',
             'headers'=>[
-                    ['title'=> '名称','name'=> 'name', 'width'=> 100],
-                    ['title'=> '标识','name'=> 'slug', 'width'=> 100],
-                    ['title'=> '权限','name'=> 'permissions', 'multiselect'=>AdminPermission::all(['name','id'])->toArray()],
+                ['title'=> '名称','name'=> 'name', 'width'=> 100],
+                ['title'=> '标识','name'=> 'slug', 'width'=> 100],
+                ['title'=> '权限','name'=> 'permissions', 'multiselect'=>AdminPermission::all(['name','id'])->toArray()],
             ],
             'body'=>$model,
         ];
