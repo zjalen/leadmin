@@ -138,6 +138,16 @@ class AdminPermissionController extends Controller
                 'http_path'=> null,
 
             ],
+            'rules' => [
+                'name' => [
+                    ['required'=>true, 'message'=>'名称必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+                'slug' => [
+                    ['required'=>true, 'message'=>'标识必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+            ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
     }
@@ -178,6 +188,16 @@ class AdminPermissionController extends Controller
 
             ],
             'body'=>$model,
+            'rules' => [
+                'name' => [
+                    ['required'=>true, 'message'=>'名称必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+                'slug' => [
+                    ['required'=>true, 'message'=>'标识必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+            ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
     }

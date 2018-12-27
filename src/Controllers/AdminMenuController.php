@@ -42,6 +42,15 @@ class AdminMenuController extends Controller
                 'url'=> null,
                 'roles'=>[]
             ],
+            'rules' => [
+                'title' => [
+                    ['required'=>true, 'message'=>'名称必填', 'trigger'=> 'blur'],
+                    ['max'=>10, 'message'=>'长度不大于10', 'trigger'=> 'blur'],
+                ],
+                'icon' => [
+                    ['required'=>true, 'message'=>'必填,参加font-awsome', 'trigger'=> 'blur'],
+                ],
+            ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data) ]);
     }
@@ -98,6 +107,15 @@ class AdminMenuController extends Controller
                 ['title'=> '访问角色','name'=> 'roles', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
             ],
             'body'=>$model,
+            'rules' => [
+                'title' => [
+                    ['required'=>true, 'message'=>'名称必填', 'trigger'=> 'blur'],
+                    ['max'=>10, 'message'=>'长度不大于10', 'trigger'=> 'blur'],
+                ],
+                'icon' => [
+                    ['required'=>true, 'message'=>'必填,参加font-awsome', 'trigger'=> 'blur'],
+                ],
+            ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
     }

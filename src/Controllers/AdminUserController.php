@@ -92,21 +92,21 @@ class AdminUserController extends Controller
         }
         $filters = [
             'headers'=>[
-                ['title'=> '用户名','name'=> '%username%'],
-                ['title'=> '密码','name'=> 'password'],
-                ['title'=> '记住密码','name'=> 'remember_token'],
-                ['title'=> '名字','name'=> 'name'],
-                ['title'=> '邮箱','name'=> 'email'],
-                ['title'=> '头像','name'=> 'avatar',],
+                    ['title'=> '用户名','name'=> '%username%'],
+                    ['title'=> '密码','name'=> 'password'],
+                    ['title'=> '记住密码','name'=> 'remember_token'],
+                    ['title'=> '名字','name'=> 'name'],
+                    ['title'=> '邮箱','name'=> 'email'],
+                    ['title'=> '头像','name'=> 'avatar',],
 
             ],
             'body'=>[
-                'username'=> array_key_exists('username', $conditions) ? $conditions['username']: null ,
-                'password'=> array_key_exists('password', $conditions) ? $conditions['password']: null ,
-                'remember_token'=> array_key_exists('remember_token', $conditions) ? $conditions['remember_token']: null ,
-                'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
-                'email'=> array_key_exists('email', $conditions) ? $conditions['email']: null ,
-                'avatar'=> array_key_exists('avatar', $conditions) ? $conditions['avatar']: null ,
+                    'username'=> array_key_exists('username', $conditions) ? $conditions['username']: null ,
+                    'password'=> array_key_exists('password', $conditions) ? $conditions['password']: null ,
+                    'remember_token'=> array_key_exists('remember_token', $conditions) ? $conditions['remember_token']: null ,
+                    'name'=> array_key_exists('name', $conditions) ? $conditions['name']: null ,
+                    'email'=> array_key_exists('email', $conditions) ? $conditions['email']: null ,
+                    'avatar'=> array_key_exists('avatar', $conditions) ? $conditions['avatar']: null ,
 
             ],
         ];
@@ -151,6 +151,16 @@ class AdminUserController extends Controller
                 'email'=> null,
                 'avatar'=> null,
                 'roles'=> [],
+            ],
+            'rules' => [
+                'username' => [
+                    ['required'=>true, 'message'=>'用户名必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+                'password' => [
+                    ['required'=>true, 'message'=>'密码必填', 'trigger'=> 'blur'],
+                    ['max'=>30, 'message'=>'长度不大于30', 'trigger'=> 'blur'],
+                ],
             ],
         ];
         return view('leadmin.commons.create_and_edit',['data'=> json_encode($data)]);
@@ -207,6 +217,12 @@ class AdminUserController extends Controller
                 ['title'=> '角色','name'=> 'roles', 'multiselect'=> AdminRole::all('name','id')->toArray()],
             ],
             'body'=>$model,
+            'rules' => [
+                'username' => [
+                    ['required'=>true, 'message'=>'用户名必填', 'trigger'=> 'blur'],
+                    ['max'=>20, 'message'=>'长度不大于20', 'trigger'=> 'blur'],
+                ],
+            ],
         ];
         $array = json_encode($data);
         return view('leadmin.commons.create_and_edit',['data'=> $array]);

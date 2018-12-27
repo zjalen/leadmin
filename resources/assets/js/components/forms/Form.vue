@@ -1,7 +1,7 @@
 <template>
     <div class="form-content">
-        <el-form ref="form" :model="form1.body" label-width="80px">
-            <el-form-item v-for="(value, key) in form1.headers" :key="key" :label="value.title">
+        <el-form :ref="form1.body" :model="form1.body" :rules="form1.rules" label-width="80px">
+            <el-form-item v-for="(value, key) in form1.headers" :prop="value.name" :key="key" :label="value.title">
                 <el-select clearable v-if="value.select" v-model="form1.body[value.name]" :placeholder="value.select.name">
                     <el-option v-for="(v, k) in value.select" :key="k" :label="v.label" :value="v.value"></el-option>
                 </el-select>
@@ -83,10 +83,18 @@
             if(this.form1.body.cascader_list){
                 this.options = JSON.parse(this.form1.body.cascader_list)
             }
+            console.log(this.form1.rules);
 
         },
         methods: {
             onSubmit() {
+                this.$refs[this.form1.body].validate((valid) => {
+                    if (valid) {
+
+                    } else {
+                        return false;
+                    }
+                });
                 this.$emit('action',{act: 'submit', data: this.form1.body});
             },
             onCancel() {
