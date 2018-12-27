@@ -83,19 +83,18 @@
             if(this.form1.body.cascader_list){
                 this.options = JSON.parse(this.form1.body.cascader_list)
             }
-            console.log(this.form1.rules);
+            // console.log(this.form1.rules);
 
         },
         methods: {
             onSubmit() {
                 this.$refs[this.form1.body].validate((valid) => {
                     if (valid) {
-
+                        this.$emit('action',{act: 'submit', data: this.form1.body});
                     } else {
                         return false;
                     }
                 });
-                this.$emit('action',{act: 'submit', data: this.form1.body});
             },
             onCancel() {
                 this.$emit('action',{act: 'cancel'});
