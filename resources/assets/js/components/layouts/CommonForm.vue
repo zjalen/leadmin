@@ -71,13 +71,17 @@
                     }
                     that.loading = false;
                 }).catch(function(response) {
-                    if (response.errors) {
-                        that.$message({
-                            message: JSON.stringify(response.errors),
-                            type: 'error'
-                        });
-                    }else {
-                    }
+                    // if (response.errors) {
+                    //     that.$message({
+                    //         message: JSON.stringify(response.errors),
+                    //         type: 'error'
+                    //     });
+                    // }else {
+                    // }
+                    that.$message({
+                        message: JSON.stringify(response.errors),
+                        type: 'error'
+                    });
                     that.loading = false;
                 });
             },
@@ -100,13 +104,18 @@
                     }
                     that.loading = false;
                 }).catch(function(error) {
-                    if (error.response.status === 422) {
-                        that.$message({
-                            message: JSON.stringify(error.response.data.errors),
-                            type: 'error'
-                        });
-                    } else {
-                    }
+                    // if (error.response.status === 422) {
+                    //     that.$message({
+                    //         message: JSON.stringify(error.response.data.errors),
+                    //         type: 'error'
+                    //     });
+                    // } else {
+                    // }
+                    // that.loading = false;
+                    that.$message({
+                        message: JSON.stringify(response.errors),
+                        type: 'error'
+                    });
                     that.loading = false;
                 });
             }
