@@ -22,9 +22,6 @@
                         <div v-if="scope.row[value.name]" class="image-box">
                             <img class="image avatar" :src="scope.row[value.name]">
                         </div>
-                        <span v-else class="label label-danger">
-                            暂无用户
-                        </span>
                     </span>
 
                     <span v-else-if="value.action">
@@ -37,9 +34,7 @@
                         <span class="label" :class="value.text_tag">{{scope.row[value.name]}}</span>
                     </span>
                     <span v-else-if="value.is_text_tag">
-                        <span class="label label-success" v-if="scope.row[value.name] == 0">正常</span>
-                        <span class="label label-danger" v-else-if="scope.row[value.name] == 1">异常</span>
-                        <span class="label label-danger" v-else></span>
+                        <span :class="scope.row[value.name]?'label label-success':'label label-danger'">{{scope.row[value.name]?value.on_text:value.off_text}}</span>
                     </span>
                     <span v-else-if="value.multiselect">
                         <span v-for="(v,k) in scope.row[value.name]" :key="k" class="label label-primary" style="margin-left: 2px;">{{v.name ? v.name : v}}</span>
@@ -49,7 +44,7 @@
                     </span>
 
                     <span v-else-if="value.link">
-                        <a :href="value.link">{{scope.row[value.name]}}</a>
+                        <a :href="scope.row['link']">{{scope.row[value.name]}}</a>
                     </span>
 
                     <span v-else-if="value.expand">
@@ -60,13 +55,7 @@
                             </li>
                         </ul>
                     </span>
-
-
-
-
                     <span v-else>{{scope.row[value.name]}}</span>
-
-
                 </template>
             </el-table-column>
 
@@ -76,7 +65,7 @@
                     label="操作">
                 <template slot-scope="scope">
                     <span v-if="table_data.actions.button">
-                         <el-button v-for="(value,key) in table_data.actions.button" :key="key"  :type="value.type" @click="onAction(value, scope.row)" size="mini" >
+                         <el-button v-for="(value,key) in table_data.actions.button" :key="key"  :type="value.type" @click="onAction(value.action, scope.row)" size="mini" >
                         <i style="margin-right: 5px;" class="fa" :class="value.icon"></i>{{value.text}}</el-button>
                     </span>
                 </template>
