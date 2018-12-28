@@ -115,7 +115,7 @@ class Leadmin
             /* @var \Illuminate\Routing\Router $router */
             $router->namespace('Zjalen\Leadmin\Controllers')->group(function ($router) {
 
-                $router->post('admin_menus/saveMenus','AdminMenuController@saveMenus');
+                $router->post('auth/saveMenus','AdminMenuController@saveMenus');
                 $router->post('file_upload', 'AdminUserController@fileUpload');
                 /* @var \Illuminate\Routing\Router $router */
                 $router->resource('auth/users', 'AdminUserController');

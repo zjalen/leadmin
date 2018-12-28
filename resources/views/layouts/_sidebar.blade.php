@@ -1,8 +1,8 @@
 <!--sidebar start-->
 <aside>
-    <div id="sidebar"  class="nav-collapse ">
+    <div id="sidebar" style="height: 100%;overflow: scroll;"  class="nav-collapse ">
         <!-- sidebar menu start-->
-        <ul class="sidebar-menu" style="height: 100%;overflow: scroll;">
+        <ul class="sidebar-menu">
             <li class="active">
                 <a href="{{ url('admin/welcome') }}" class="J_menuItem">
                     <i class="fa fa-dashboard"></i>
