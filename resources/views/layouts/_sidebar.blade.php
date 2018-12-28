@@ -1,6 +1,6 @@
 <!--sidebar start-->
 <aside>
-    <div id="sidebar" style="height: 100%;overflow: scroll;"  class="nav-collapse ">
+    <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">

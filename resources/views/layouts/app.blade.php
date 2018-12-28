@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="Jalen">
     <meta name="keyword" content="">
@@ -22,11 +22,19 @@
                 padding-top: 61px;
                 height: calc(100vh);
             }
+            #sidebar {
+                height: auto;
+                overflow: scroll;
+            }
         }
         @media (min-width: 769px) {
             #main-content {
                 padding-top: 61px;
                 height: calc(100vh - 45px);
+            }
+            #sidebar {
+                height: 100%;
+                overflow: scroll;
             }
         }
         .dropdown-menu>li>a>.glyphicon, .dropdown-menu>li>a>.fa, .dropdown-menu>li>a>.ion {
@@ -40,17 +48,21 @@
             text-align: left;
             font-weight: 400;
         }
+        html body {
+            overflow: hidden;
+            width: 100vw;
+        }
     </style>
 </head>
 
-<body style="overflow-x: hidden;">
-    <section id="container" class="">
+<body>
+<section id="container" class="">
 
-    @include('leadmin.layouts._header')
+@include('leadmin.layouts._header')
 
-    @include('leadmin.layouts._sidebar')
+@include('leadmin.layouts._sidebar')
 
-    <!--main content start-->
+<!--main content start-->
     <section id="main-content" style="">
         <div id="" class="gray-bg dashbard-1 content-wrapper" style="width: 100%;height: 100%;">
             <div class="row content-tabs" style="margin-left: 0px">
@@ -92,7 +104,7 @@
         </div>
     </section>
     {{--<div style="padding: 5px;">--}}
-        {{--@include('leadmin.layouts._footer')--}}
+    {{--@include('leadmin.layouts._footer')--}}
     {{--</div>--}}
 
     <script src="{{ asset('vendor/leadmin/js/jquery.js') }}"></script>
@@ -100,7 +112,7 @@
     <script src="{{ asset("vendor/leadmin/js/contabs.js") }}"></script>
     <script src="{{ asset('vendor/leadmin/js/common-scripts.js') }}"></script>
 
-    </section>
+</section>
 <script>
     $(document).ready(function () {
         $(".sidebar-menu a").click(function () {
