@@ -1,7 +1,7 @@
 <template>
     <div class="table-container">
         <el-table :data="table_data.body" fit stripe @sort-change="onSort">
-            <el-table-column :type="value.type" :label="value.title" :prop="value.name" :sortable=value.sortable v-for ="(value,key) in table_data.headers" :width="value.width + 'px'"  :key="key" >
+            <el-table-column :type="value.type" :label="value.title" show-overflow-tooltip :prop="value.name" :sortable=value.sortable v-for ="(value,key) in table_data.headers" :width="value.width + 'px'"  :key="key" >
 
                 <template slot-scope="scope">
                     <span v-if="value.switch">
