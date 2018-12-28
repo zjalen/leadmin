@@ -2,7 +2,7 @@
 <aside>
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu" style="height: 100%;overflow: scroll;">
             <li class="active">
                 <a href="{{ url('admin/welcome') }}" class="J_menuItem">
                     <i class="fa fa-dashboard"></i>

@@ -93,7 +93,7 @@ class AdminMenuController extends Controller
                 $list[] = ['value' => $menu->id, 'label' => $menu->title];
         }
         $model['parent_id'] = $model['parent_id'] != 0 ? $model['parent_id']:null;
-        $model['roles'] = $roles;
+        $model['role'] = $roles;
         $data = [
             'title'=> '编辑',
             'description'=> '菜单编辑',
@@ -104,7 +104,7 @@ class AdminMenuController extends Controller
                 ['title'=> '标题','name'=> 'title', 'width'=> 100],
                 ['title'=> '图标','name'=> 'icon', 'width'=> 100],
                 ['title'=> '链接','name'=> 'url', 'width'=> 100],
-                ['title'=> '访问角色','name'=> 'roles', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
+                ['title'=> '访问角色','name'=> 'role', 'multiselect'=>AdminRole::all(['name','id'])->toArray()],
             ],
             'body'=>$model,
             'rules' => [
@@ -134,8 +134,8 @@ class AdminMenuController extends Controller
             }
         }
         $model = AdminMenu::find($id);
-        if ($receive['roles']){
-            $model->roles()->sync($receive['roles']);
+        if ($receive['role']){
+            $model->roles()->sync($receive['role']);
         }
         $res = $model->update($receive);
         if ($res) {

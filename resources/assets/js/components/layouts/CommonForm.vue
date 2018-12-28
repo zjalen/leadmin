@@ -79,7 +79,7 @@
                     // }else {
                     // }
                     that.$message({
-                        message: JSON.stringify(response.errors),
+                        message: JSON.stringify(response),
                         type: 'error'
                     });
                     that.loading = false;
@@ -103,7 +103,7 @@
                         });
                     }
                     that.loading = false;
-                }).catch(function(error) {
+                }).catch(function(response) {
                     // if (error.response.status === 422) {
                     //     that.$message({
                     //         message: JSON.stringify(error.response.data.errors),
@@ -113,7 +113,7 @@
                     // }
                     // that.loading = false;
                     that.$message({
-                        message: JSON.stringify(response.errors),
+                        message: JSON.stringify(response),
                         type: 'error'
                     });
                     that.loading = false;
