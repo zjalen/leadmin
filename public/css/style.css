@@ -354,7 +354,7 @@ ul.sidebar-menu li.active a i {
 
 .white-bg {
     background: #fff;
-    border-bottom: 1px solid #f1f2f7;
+    /*border-bottom: 1px solid #f1f2f7;*/
 }
 
 .wrapper {

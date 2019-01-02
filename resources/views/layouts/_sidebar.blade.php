@@ -5,7 +5,7 @@
         <ul class="sidebar-menu">
             <li class="active">
                 <a href="{{ url('admin/welcome') }}" class="J_menuItem">
-                    <i class="fa fa-dashboard"></i>
+                    <i style="width: 25px;text-align: center" class="fa fa-dashboard"></i>
                     <span>仪表盘</span>
                 </a>
             </li>

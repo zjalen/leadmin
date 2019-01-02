@@ -6,14 +6,14 @@
             @else
                  <a href="{{ url($item['url']) }}" class="J_menuItem">
             @endif
-                <i class="fa {{$item['icon']}}"></i>
+                <i style="width: 25px;text-align: center" class="fa {{$item['icon']}}"></i>
                 <span>{{$item['title']}}</span>
             </a>
         </li>
     @else
         <li class="sub-menu">
             <a href="javascript:;" class="">
-                <i class="fa {{$item['icon']}}"></i>
+                <i style="width: 25px; text-align: center" class="fa {{$item['icon']}}"></i>
                 <span>{{$item['title']}}</span>
                 <span class="arrow"></span>
             </a>
